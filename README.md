@@ -22,25 +22,32 @@ npm install
 
 2. Configure environment files:
 
-- Copy `backend/.env.example` to `backend/.env`
-- Copy `frontend/.env.example` to `frontend/.env.local`
+- Create `backend/.env` with:
+```bash
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/quiz_builder?schema=public"
+FRONTEND_URL="http://localhost:3000"
+PORT=4000
+```
 
-3. Set the backend database URL to your PostgreSQL instance in `backend/.env`.
+- Create `frontend/.env.local` with:
+```bash
+NEXT_PUBLIC_API_BASE_URL="http://localhost:4000"
+```
 
-4. Generate Prisma Client and push the schema to the database:
+3. Generate Prisma Client and push the schema to the database:
 
 ```bash
 npm run prisma:generate --workspace backend
 npm run db:push --workspace backend
 ```
 
-5. Seed the database with a sample quiz:
+4. Seed the database with a sample quiz:
 
 ```bash
 npm run db:seed --workspace backend
 ```
 
-6. Start both apps:
+5. Start both apps:
 
 ```bash
 npm run dev
