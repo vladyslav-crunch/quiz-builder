@@ -19,7 +19,6 @@ export function QuizForm() {
     control,
     register,
     handleSubmit,
-    setError,
     formState: { errors, isSubmitting },
   } = useForm<QuizFormValues>({
     resolver: zodResolver(quizFormSchema),
@@ -41,10 +40,8 @@ export function QuizForm() {
       router.refresh();
     } catch (error) {
       if (error instanceof ApiError && error.fieldErrors) {
-        // Set field-specific errors
         Object.entries(error.fieldErrors).forEach(([field, messages]) => {
           if (field === 'questions' && Array.isArray(messages)) {
-            // Show error under questions
             setQuestionError(messages[0] || 'Error with questions');
           }
         });
