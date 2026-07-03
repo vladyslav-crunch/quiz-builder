@@ -76,7 +76,7 @@ export function QuestionEditor({
                 {...register(`questions.${index}.optionsText`)}
                 rows={4}
                 className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-accent-500/50"
-                placeholder="Option A\nOption B\nOption C"
+                placeholder={`Option A\nOption B\nOption C`}
               />
             </label>
             {errors.questions?.[index]?.optionsText ? (
@@ -95,7 +95,8 @@ export function QuestionEditor({
                 {...register(`questions.${index}.correctAnswersText`)}
                 rows={3}
                 className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-accent-500/50"
-                placeholder="Option A\nOption C"
+                placeholder={`Option A
+Option C`}
               />
             </label>
             {errors.questions?.[index]?.correctAnswersText ? (

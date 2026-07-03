@@ -46,6 +46,14 @@ const questionFormSchema = z
         });
       }
 
+      if (correctAnswers.length > options.length) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Cannot have more correct answers than options.',
+          path: ['correctAnswersText'],
+        });
+      }
+
       if (correctAnswers.some((answer) => !options.includes(answer))) {
         context.addIssue({
           code: z.ZodIssueCode.custom,

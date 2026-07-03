@@ -22,6 +22,14 @@ const checkboxQuestionSchema = z
   .superRefine((value, context) => {
     const optionSet = new Set(value.options);
 
+    if (value.correctAnswers.length > value.options.length) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Cannot have more correct answers than options.',
+        path: ['correctAnswers'],
+      });
+    }
+
     if (value.correctAnswers.some((answer) => !optionSet.has(answer))) {
       context.addIssue({
         code: z.ZodIssueCode.custom,
